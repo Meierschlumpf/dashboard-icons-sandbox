@@ -7,7 +7,7 @@ jobs:
   add-icon:
     runs-on: ubuntu-latest
     # This condition ensures the job only runs when the specified label is added
-    if: contains(github.event.pull_request.labels.*.name, 'approved')
+    if: contains(github.event.issue.labels.*.name, 'approved')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
