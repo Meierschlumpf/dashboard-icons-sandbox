@@ -16,8 +16,38 @@ jobs:
         with:
           node-version: 22
       - name: Run parse-icon-form.js
-        run: node parse-icon-form.js
+        id: parse-icon-form
+        run: node parse-icon-form.js >> "$GITHUB_OUTPUT"
         env:
           INPUT_ISSUE_BODY: ${{ github.event.issue.body }}
           INPUT_ISSUE_AUTHOR_ID: ${{ github.event.issue.user.id }}
           INPUT_ISSUE_AUTHOR_LOGIN: ${{ github.event.issue.user.login }}
+
+      - name: Set Up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+      - name: Install Dependencies
+        run: |
+          pip install cairosvg pillow
+      - name: Convert icon
+        run: python convert-icon.py ${{steps.parse-icon-form.outputs.icon_name}}
+
+      - name: Commit changes
+        run: |
+          git config user.name "Meierschlumpf"
+          git config user.email "meierschlumpf@users.noreply.github.com"
+          git add .
+          git commit -m "feat(icons): add ${{steps.parse-icon-form.outputs.icon_name}}"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        id: cpr
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          branch: icons/add-${{steps.parse-icon-form.outputs.icon_name}}
+          base: main
+          title: "feat(icons): add ${{steps.parse-icon-form.outputs.icon_name}}"
+          delete-branch: true
+          body: |
+            This PR adds the icon ${{steps.parse-icon-form.outputs.icon_name}} added in #${{github.event.issue.id}} to the project.

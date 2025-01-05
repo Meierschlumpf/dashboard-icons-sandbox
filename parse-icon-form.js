@@ -1,4 +1,4 @@
-// import fs from "fs";
+import fs from "fs";
 
 const input = process.env.INPUT_ISSUE_BODY;
 
@@ -47,7 +47,13 @@ const icon = {
   aliases: data.aliases ? data.aliases.split(",").map((item) => item.trim()) : [],
 };
 
-console.log(
+// The below console log is used as output for the action
+console.log(`icon_name=${icon.name}`);
+
+const iconBlob = await fetch(icon.icon).then((res) => res.blob());
+fs.writeFileSync(`${icon.type}/${icon.name}.${icon.type}`, Buffer.from(await iconBlob.arrayBuffer()));
+fs.writeFileSync(
+  `meta/${icon.name}.json`,
   JSON.stringify(
     {
       base: icon.type,
@@ -65,26 +71,3 @@ console.log(
     2
   )
 );
-/*
-const iconBlob = await fetch(icon.icon).then((res) => res.blob());
-fs.writeFileSync(`${icon.type}/${icon.name}.${icon.type}`, Buffer.from(await iconBlob.arrayBuffer()));
-fs.writeFileSync(
-  `meta/${icon.name}.json`,
-  JSON.stringify(
-    {
-      base: icon.type,
-      aliases: icon.aliases,
-      categories: icon.categories,
-      update: {
-        timestamp: new Date().toISOString(),
-        author: {
-          id: 1,
-          name: "user",
-        },
-      },
-    },
-    null,
-    2
-  )
-);
-*/
