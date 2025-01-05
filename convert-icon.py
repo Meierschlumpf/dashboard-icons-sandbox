@@ -46,9 +46,9 @@ PNG_DIR.mkdir(parents=True, exist_ok=True)
 WEBP_DIR.mkdir(parents=True, exist_ok=True)
 
 FILE_NAME = sys.argv[1]
-SVG_PATH = SVG_DIR / FILE_NAME + ".svg"
-PNG_PATH = PNG_DIR / FILE_NAME + ".png"
-WEBP_PATH = WEBP_DIR / FILE_NAME + ".webp"
+SVG_PATH = SVG_DIR / (FILE_NAME + ".svg")
+PNG_PATH = PNG_DIR / (FILE_NAME + ".png")
+WEBP_PATH = WEBP_DIR / (FILE_NAME + ".webp")
 
 def main():
     if SVG_PATH.exists():
