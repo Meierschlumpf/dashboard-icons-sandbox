@@ -1,5 +1,5 @@
-name:
-about: Use this template to add a new icon to the project
+name: "Add icon"
+description: Use this template to add a new icon to the project
 title: "feat(icons): add [NAME]"
 labels: ["new icon"]
 assignees:
