@@ -1,0 +1,15 @@
+{
+  "base": "svg",
+  "aliases": [
+    "icon-alias",
+    "icon-alias2"
+  ],
+  "categories": [],
+  "update": {
+    "timestamp": "2025-01-05T14:37:29.441Z",
+    "author": {
+      "id": 63781622,
+      "name": "Meierschlumpf"
+    }
+  }
+}
