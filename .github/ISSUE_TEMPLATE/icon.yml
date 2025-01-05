@@ -16,7 +16,7 @@ body:
       label: Icon name
       description: The name of the icon
       placeholder: e.g. "icon-name"
-  - type: description
+  - type: textarea
     attributes:
       label: Paste icon
       description: |
