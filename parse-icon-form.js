@@ -56,8 +56,8 @@ console.log(
       update: {
         timestamp: new Date().toISOString(),
         author: {
-          id: Number(env.INPUT_ISSUE_AUTHOR_ID),
-          name: env.INPUT_ISSUE_AUTHOR_LOGIN,
+          id: Number(process.env.INPUT_ISSUE_AUTHOR_ID),
+          name: process.env.INPUT_ISSUE_AUTHOR_LOGIN,
         },
       },
     },
