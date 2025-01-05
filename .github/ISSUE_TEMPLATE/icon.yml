@@ -1,0 +1,37 @@
+name:
+about: Use this template to add a new icon to the project
+title: "feat(icons): add [NAME]"
+labels: ["new icon"]
+assignees:
+  - "@homarr-labs/dashboard-icons"
+body:
+  - type: input
+    attributes:
+      label: Icon name
+      description: The name of the icon
+      placeholder: e.g. "icon-name"
+  - type: markdown
+    attributes:
+      value: |
+        ## Please paste the icon below
+  - type: dropdown
+    attributes:
+      label: Icon type
+      options:
+        - SVG
+        - PNG
+  - type: dropdown
+    attributes:
+      label: Categories
+      multiple: true
+      options:
+        - Security
+        - Files
+  - type: input
+    attributes:
+      label: Aliases
+      description: A comma separated list of aliases
+      placeholder: e.g. "icon-alias, icon-alias-2"
+  - type: textarea
+    attributes:
+      label: Additional information
